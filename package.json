@@ -1,0 +1,23 @@
+{
+  "name": "vacations-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chromedriver": "^83.0.0",
+    "cucumber": "^6.0.5",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  }
+}
