@@ -1,7 +1,7 @@
 {
   "name": "vacations-management",
   "version": "1.0.0",
-  "description": "",
+  "description": "Test automation with cucumberJS",
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js"
@@ -19,5 +19,13 @@
     "chromedriver": "^83.0.0",
     "cucumber": "^6.0.5",
     "selenium-webdriver": "^4.0.0-alpha.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luiseps/vacations-management.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luiseps/vacations-management/issues"
+  },
+  "homepage": "https://github.com/luiseps/vacations-management#readme"
 }
