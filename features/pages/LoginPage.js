@@ -15,9 +15,4 @@ Page.prototype.submitBtn = function() {
     this.findByCss('input.submit').click();
 }
 
-Page.prototype.bannerUserLoggin = function() {
-    this.getMessage('p.flash_notice');
-}
-
-
 module.exports = Page;

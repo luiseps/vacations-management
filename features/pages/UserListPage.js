@@ -1,10 +1,8 @@
-/*export class UserListPage{
+var Page = require('./Page');
 
-    get deleteButton() { return $('table:nth-child(3) tbody:nth-child(1) tr:nth-child(2) td:nth-child(9) > a:nth-child(1)')}
+Page.prototype.deleteButton = function(text) {
+    this.findByCss('a:nth-child(1)').click();
+}
 
-    
-    submit() {
-        this.createUserButton.click();
-    }
-}*/
+module.exports = Page;
 

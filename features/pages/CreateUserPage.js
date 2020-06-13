@@ -1,16 +1,35 @@
-/*export class CreateUserPage { 
+var Page = require('./Page');
 
-    get firstNameField() { return $('#employee_first_name') }
-    get lastNameField() { return $('#employee_last_name')}
-    get emailField() { return $('#employee_email')}
-    get idField() { return $('#employee_identification')}
-    get leaderField() { return $('#employee_leader_name')}
-    get yearSelector() { return $('#employee_start_working_on_1i')}
-    get monthSelector() { return $('#employee_start_working_on_2i')}
-    get daySelector() { return $('#employee_start_working_on_3i')}
-    get createButton() { return $('div:nth-child(3) div:nth-child(1) form.new_employee:nth-child(2) div.actions:nth-child(8) > input:nth-child(1)')}
-    
-    submit() {
-        this.createUserButton.click();
-    }
-}*/
+Page.prototype.firstNameField = function(text) {
+    this.writeById('employee_first_name', text);
+}
+
+Page.prototype.lastNameField = function(text) {
+    this.writeById('employee_last_name', text);
+}
+
+Page.prototype.emailField = function(text) {
+    this.writeById('employee_email', text);
+}
+
+Page.prototype.leaderField = function(text) {
+    this.writeById('employee_leader_name', text);
+}
+
+Page.prototype.yearSelector = function(text) {
+    this.writeById('employee_start_working_on_1i', text);
+}
+
+Page.prototype.monthSelector = function(text) {
+    this.writeById('employee_start_working_on_2i', text);
+}
+
+Page.prototype.daySelector = function(text) {
+    this.writeById('employee_start_working_on_3i', text);
+}
+
+Page.prototype.createButton = function(text) {
+    tthis.findByCss('input:nth-child(1)').click();
+}
+
+module.exports = Page;

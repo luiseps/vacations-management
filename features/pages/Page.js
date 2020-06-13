@@ -2,7 +2,7 @@ var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until,
     chromedriver = require('chromedriver');
-chrome = require('selenium-webdriver/chrome'),
+    chrome = require('selenium-webdriver/chrome'),
     chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build()),
     options = new chrome.Options('webdriver-manager start --standalone');
 options.addArguments('disable-infobars');
@@ -42,11 +42,6 @@ var Page = function() {
         return this.findId(element).sendKeys(text);
     }
 
-    this.getMessage = function(element) {
-        return driver.wait(until.elementLocated(this.findByCss(element), 10000))
-            .getText();
-
-    }
     this.quit = function() {
         return driver.quit();
     }
