@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { Given, When, Then } = require('cucumber');
+const { Given, When, Then, AfterAll } = require('cucumber');
 const { Builder, By, until } = require('selenium-webdriver');
 const { loginPageObjects } = require('../pages_objects/LoginPage');
 const { homePageObjects } = require('../pages_objects/HomePage');
@@ -24,4 +24,8 @@ Then('I should see that {string}', async function(expectedMessage) {
   let actualResult = await messageFieldObject.getText();
   assert.equal(actualResult, expectedMessage);
     
+});
+
+AfterAll( async function(){
+    await driver.quit();
 });
