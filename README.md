@@ -1,7 +1,6 @@
-# vacations-management
-Test automation with cucumberJS
+# Vacations Management
+Test automation with cucumberJS and WebdriverJS
 
-# Install
-npm install
-npm install --save chromedriver
-npm install --save-dev cucumber
+# Run
+- npm install
+- npm test
