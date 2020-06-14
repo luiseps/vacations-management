@@ -1,11 +1,15 @@
 const assert = require('assert');
-const { Given, When, Then, AfterAll } = require('cucumber');
+const { Given, When, Then, AfterAll, BeforeAll } = require('cucumber');
 const { Builder, By, until } = require('selenium-webdriver');
 const { loginPageObjects } = require('../pages_objects/LoginPage');
 const { homePageObjects } = require('../pages_objects/HomePage');
 const { testData } = require('../utils/Constants')
 
 let driver = new Builder().forBrowser('chrome').build();
+
+BeforeAll(async function(){
+    await driver.manage().window().maximize();
+})
 
 Given('I want to login on tha vacations platform', async function() {
     await driver.get(testData.homePageUrl);
@@ -27,19 +31,6 @@ Then('I should see that {string}', async function(expectedMessage) {
     
 });
 
-Given('I am logged in the vacation platform', async function () {
-
-   
-});
-
-
-When('I fill the registration form', async function () {
-
-});
-
-Then('I should see that a new user was created', async function () {
-
-});
 AfterAll( async function(){
     await driver.quit();
 });
