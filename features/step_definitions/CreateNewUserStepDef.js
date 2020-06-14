@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { Given, When, Then } = require('cucumber');
+const { Given, When, Then, AfterAll } = require('cucumber');
 const { By, until, Builder} = require('selenium-webdriver');
 //const { driver } =  require('./VacationsManagementStepDef');
 const { loginPageObjects } = require('../pages_objects/LoginPage');
@@ -21,4 +21,8 @@ When('I fill the registration form', async function () {
 
 Then('I should see that a new user was created', async function () {
 
+});
+
+AfterAll( async function(){
+    await driver.quit();
 });
