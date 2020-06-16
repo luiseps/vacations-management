@@ -34,3 +34,5 @@ Then('I should see that {string}', async function(expectedMessage) {
 AfterAll( async function(){
     await driver.quit();
 });
+
+exports.driver = driver;
