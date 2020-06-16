@@ -7,8 +7,8 @@ const testData = {
     email: 'jamesmith@test.com',
     id: '1234567890',
     leader: 'Luis Perez',
-    year: '2014',
-    month: '01',
+    year: '2015',
+    month: 'January',
     day: '21'
 };
   

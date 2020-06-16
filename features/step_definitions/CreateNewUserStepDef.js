@@ -29,14 +29,18 @@ When('I fill the registration form', {timeout: 4 * 5000}, async function () {
     await driver.findElement(By.id(createUserPageObjects.year)).sendKeys(testData.year);
     await driver.findElement(By.id(createUserPageObjects.month)).sendKeys(testData.month);
     await driver.findElement(By.id(createUserPageObjects.day)).sendKeys(testData.day);
-
-    //await driver.sleep(250)
+    
     var sbmtBtn = await driver.wait(until.elementLocated(By.css(createUserPageObjects.createUserBtn)), 5000);
     await driver.wait(until.elementIsVisible(sbmtBtn, 5000)).click();
-
 
 });
 
 Then('I should see that a new user was created', async function () {
+
+
+    //var table = await driver.findElement(By.tagName("table")); 
+    //var allRows = await table.findElements(By.tagName('tr'));
+
+
 
 });
