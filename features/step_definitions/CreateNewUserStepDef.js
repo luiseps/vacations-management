@@ -42,19 +42,34 @@ Then('I should see that a new user was created', async function () {
     await driver.findElement(By.linkText(createUserPageObjects.backButton)).click(); 
     
     let allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr"));
-    
-    let i = 2;
-    let value;
-    let rowId;
+  
+    let leader;
+    let rowId = 2;
     console.log(allRows.length);
-    while(i<=allRows.length){
-        value = await (await driver.findElement(By.css(`tr:nth-child(${i}) > td:nth-child(4)`))).getText();
-        i++;
-        if(value == testData.leader){
-            rowId = i;
-            console.log(value, i);
+    while(rowId<=allRows.length){
+        leader = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(4)`))).getText();
+        rowId++;
+        if(leader == testData.leader){
+            break;
         }
     }
+   
+    let name = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(1)`))).getText();
+    assert.equal(name, testData.name);    
+
+    let lastName = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(2)`))).getText();
+    assert.equal(lastName, testData.lastName); 
+
+    let id = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(3)`))).getText();
+    assert.equal(id, testData.id); 
+
+    assert.equal(leader, testData.leader); 
+
+    let date = `${testData.monthNumber}/${testData.day}/${testData.year}`
+    let startedWorking = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(5)`))).getText();
+    assert.equal(startedWorking, date); 
+
+       
             
     
 });

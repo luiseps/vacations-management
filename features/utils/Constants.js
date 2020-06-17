@@ -9,6 +9,7 @@ const testData = {
     leader: 'Luis Perez',
     year: '2015',
     month: 'January',
+    monthNumber: '01',
     day: '21'
 };
   
