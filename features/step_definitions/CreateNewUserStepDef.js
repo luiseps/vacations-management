@@ -5,7 +5,9 @@ const { driver } = require('./VacationsManagementStepDef')
 const { loginPageObjects } = require('../pages_objects/LoginPage');
 const { homePageObjects } = require('../pages_objects/HomePage');
 const { createUserPageObjects } = require('../pages_objects/CreateUserPage')
-const { testData } = require('../utils/Constants')
+const { testData } = require('../utils/Constants');
+const { elementIsVisible } = require('selenium-webdriver/lib/until');
+const { table } = require('console');
 
 
 Given('I am logged in the vacation platform', {timeout: 4 * 5000}, async function () {
@@ -37,25 +39,23 @@ When('I fill the registration form', {timeout: 4 * 5000}, async function () {
 
 Then('I should see that a new user was created', async function () {
 
-   
-    var allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr"));
-    var allColumns = await driver.findElements(By.xpath("//div[@id='content']/table//tbody/tr[1]/th"));
+    await driver.findElement(By.linkText(createUserPageObjects.backButton)).click(); 
     
-    console.log(allRows.length, allColumns.length);
-    for(let i = 2; i<allRows.length; i++){
-
-        for(let j = 1; j<=allColumns.length; j++){
-            let value = await driver.findElement(By.css(`tr:nth-child(${i}) > td:nth-child(${j})`)).getText();  
-            console.log(value);
-            
+    let allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr"));
+    
+    let i = 2;
+    let value;
+    let rowId;
+    console.log(allRows.length);
+    while(i<=allRows.length){
+        value = await (await driver.findElement(By.css(`tr:nth-child(${i}) > td:nth-child(4)`))).getText();
+        i++;
+        if(value == testData.leader){
+            rowId = i;
+            console.log(value, i);
         }
     }
+            
+    
 });
 
-When('I delete a registared user', function () {
-   
-});
-
-Then('I should see that the user was deleted', function () {
-
-});

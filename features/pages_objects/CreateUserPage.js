@@ -8,7 +8,8 @@ const createUserPageObjects = {
     year: 'employee_start_working_on_1i',
     month: 'employee_start_working_on_2i',
     day: 'employee_start_working_on_3i',
-    createUserBtn: 'input[name="commit"]'
+    createUserBtn: 'input[name="commit"]',
+    backButton: 'Back'
 
 };
 
