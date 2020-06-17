@@ -37,10 +37,25 @@ When('I fill the registration form', {timeout: 4 * 5000}, async function () {
 
 Then('I should see that a new user was created', async function () {
 
+   
+    var allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr"));
+    var allColumns = await driver.findElements(By.xpath("//div[@id='content']/table//tbody/tr[1]/th"));
+    
+    console.log(allRows.length, allColumns.length);
+    for(let i = 2; i<allRows.length; i++){
 
-    //var table = await driver.findElement(By.tagName("table")); 
-    //var allRows = await table.findElements(By.tagName('tr'));
+        for(let j = 1; j<=allColumns.length; j++){
+            let value = await driver.findElement(By.css(`tr:nth-child(${i}) > td:nth-child(${j})`)).getText();  
+            console.log(value);
+            
+        }
+    }
+});
 
+When('I delete a registared user', function () {
+   
+});
 
+Then('I should see that the user was deleted', function () {
 
 });

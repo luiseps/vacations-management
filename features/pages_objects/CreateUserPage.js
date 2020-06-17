@@ -11,5 +11,5 @@ const createUserPageObjects = {
     createUserBtn: 'input[name="commit"]'
 
 };
-  
+
 exports.createUserPageObjects = createUserPageObjects;
