@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { Given, When, Then, AfterAll } = require('cucumber');
-const { By, until, Builder} = require('selenium-webdriver');
+const { By, until, Builder, Alert} = require('selenium-webdriver');
 const { driver } = require('./VacationsManagementStepDef')
 const { loginPageObjects } = require('../pages_objects/LoginPage');
 const { homePageObjects } = require('../pages_objects/HomePage');
@@ -43,34 +43,45 @@ Then('I should see that a new user was created', async function () {
     
     let allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr"));
   
-    let leader;
-    let rowId = 2;
-    console.log(allRows.length);
-    while(rowId<=allRows.length){
-        leader = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(4)`))).getText();
-        rowId++;
-        if(leader == testData.leader){
-            break;
+    let value;
+    let i = 2;
+    let rowId = 0;
+    while(i<=allRows.length){
+        value = await driver.findElement(By.css(`tr:nth-child(${i}) > td:nth-child(4)`)).getText();
+        
+        if(value == testData.leader){
+            rowId = i;
+            console.log(rowId);
         }
-    }
+        i++;
+    }    
    
-    let name = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(1)`))).getText();
+    let name = await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(1)`)).getText();
     assert.equal(name, testData.name);    
 
-    let lastName = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(2)`))).getText();
+    let lastName = await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(2)`)).getText();
     assert.equal(lastName, testData.lastName); 
 
-    let id = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(3)`))).getText();
+    let id = await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(3)`)).getText();
     assert.equal(id, testData.id); 
 
+    let leader = await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(4)`)).getText();
     assert.equal(leader, testData.leader); 
 
     let date = `${testData.monthNumber}/${testData.day}/${testData.year}`
-    let startedWorking = await (await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(5)`))).getText();
+    let startedWorking = await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(5)`)).getText();
     assert.equal(startedWorking, date); 
 
        
-            
+    await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(9)`)).click(); 
+
+    await driver.wait(until.alertIsPresent());
+
+    let alert = await driver.switchTo().alert();
+
+    await alert.accept();
+
+    await driver.sleep(2000);
     
 });
 
