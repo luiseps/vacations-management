@@ -7,7 +7,7 @@ const { testData } = require('../utils/Constants')
 
 let driver = new Builder().forBrowser('chrome').build();
 
-BeforeAll(async function(){
+BeforeAll({ timeout: 2 * 5000 }, async function() {
     await driver.manage().window().maximize();
 })
 
@@ -19,19 +19,19 @@ Given('I want to login on tha vacations platform', async function() {
 When('I enter my user and password', async function() {
     await driver.findElement(By.id(loginPageObjects.username)).sendKeys(testData.username);
     await driver.findElement(By.id(loginPageObjects.password)).sendKeys(testData.password);
-    await driver.findElement(By.css(loginPageObjects.submitBtn)).click();    
+    await driver.findElement(By.css(loginPageObjects.submitBtn)).click();
 });
 
 Then('I should see that {string}', async function(expectedMessage) {
 
-  let messageFieldObject = await driver.findElement(By.css(homePageObjects.bannerLoginSuccessful));
-  await driver.wait(until.elementIsVisible(messageFieldObject),5000);
-  let actualResult = await messageFieldObject.getText();
-  assert.equal(actualResult, expectedMessage);
-    
+    let messageFieldObject = await driver.findElement(By.css(homePageObjects.bannerLoginSuccessful));
+    await driver.wait(until.elementIsVisible(messageFieldObject), 5000);
+    let actualResult = await messageFieldObject.getText();
+    assert.equal(actualResult, expectedMessage);
+
 });
 
-AfterAll( async function(){
+AfterAll(async function() {
     await driver.quit();
 });
 
