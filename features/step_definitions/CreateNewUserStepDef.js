@@ -71,31 +71,43 @@ Then('I should see that a new user was created', async function () {
     let startedWorking = await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(5)`)).getText();
     assert.equal(startedWorking, date); 
 
-       
+});
+
+
+When('I delete a registared user', async function () {
+
+    let allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr"));
+    let value;
+    let i = 2;
+    let rowId = 0;
+    while(i<=allRows.length){
+        value = await driver.findElement(By.css(`tr:nth-child(${i}) > td:nth-child(4)`)).getText(); 
+        if(value == testData.leader){
+            rowId = i;
+        }
+        i++;
+    }  
+
     await driver.findElement(By.css(`tr:nth-child(${rowId}) > td:nth-child(9)`)).click(); 
-
     await driver.wait(until.alertIsPresent());
-
     let alert = await driver.switchTo().alert();
-
     await alert.accept();
-
     await driver.sleep(2000);
+ 
+});
 
-        
-    allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr"));
-  
-    i = 2;
-    rowId = 0;
+
+Then('I should see that the user was deleted', async function () {
+
+    let allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr")); 
+    let i = 2;
+    let rowId = 0;
     while(i<=allRows.length){
         value = await driver.findElement(By.css(`tr:nth-child(${i}) > td:nth-child(4)`)).getText();
-        
         if(value == testData.leader){
             rowId = i;
         }
         i++;
     }    
-
     assert.equal(rowId,0);
 });
-
