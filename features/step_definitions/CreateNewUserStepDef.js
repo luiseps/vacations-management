@@ -51,7 +51,6 @@ Then('I should see that a new user was created', async function () {
         
         if(value == testData.leader){
             rowId = i;
-            console.log(rowId);
         }
         i++;
     }    
@@ -82,6 +81,21 @@ Then('I should see that a new user was created', async function () {
     await alert.accept();
 
     await driver.sleep(2000);
-    
+
+        
+    allRows = await driver.findElements(By.xpath("//div[@id='content']/table/tbody/tr"));
+  
+    i = 2;
+    rowId = 0;
+    while(i<=allRows.length){
+        value = await driver.findElement(By.css(`tr:nth-child(${i}) > td:nth-child(4)`)).getText();
+        
+        if(value == testData.leader){
+            rowId = i;
+        }
+        i++;
+    }    
+
+    assert.equal(rowId,0);
 });
 
