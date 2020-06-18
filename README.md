@@ -1,10 +1,11 @@
 # Vacations Management
 Test automation with cucumberJS and WebdriverJS
 
-# Run
+# Install dependencies
 - npm install
-- npm test -- features/feature_name.feature
-    examples: 
-      - npm test -- features/vacations_management.feature
-      - npm test -- features/create_new_user.feature
+
+# Run 
+  - npm test -- features/vacations_management.feature --tags @login
+  - npm test -- features/create_new_user.feature --tags @createUser
+  - npm test -- features/create_new_user.feature --tags @deleteUser
    
