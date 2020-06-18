@@ -10,7 +10,8 @@ const testData = {
     year: '2015',
     month: 'January',
     monthNumber: '01',
-    day: '21'
+    day: '21',
+    userInfo: 'James Smith 1234567890 Luis Perez 01/21/2015 64 Show details Add/Request Vacations Delete'
 };
-  
+
 exports.testData = testData;
